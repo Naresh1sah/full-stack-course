@@ -14,4 +14,11 @@ sequelize.authenticate()
 const db={}
 db.sequelize=sequelize
 db.Sequelize=Sequelize
+
+db.books=require("./models/book.model")(sequelize,DataTypes)
+db.users=require("./models/user.model")(sequelize,DataTypes)
+db.products=require("./models/product.model")(sequelize,DataTypes)
+sequelize.sync({alter:true}).then(()=>{
+    console.log("mig")
+})
 module.exports=db

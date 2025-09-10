@@ -1,11 +1,14 @@
-const express = require("express")
+const express = require("express");
+const { books } = require("./database/connection");
 const app = express()
 
-require("./database/connection.js")
+// const {books}=require("./database/connection.js")
 
-app.get("/books",function(req,res){
+app.get("/books",async function(req,res){
+   const datas=await books.findAll()
    res.json({
-      message:"book fetched successfully"
+
+      message:"book fetched successfully",datas
 })
 });
 app.post("/books",(req,res)=>{
